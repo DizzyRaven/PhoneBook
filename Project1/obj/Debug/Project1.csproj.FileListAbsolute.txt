@@ -1,0 +1,7 @@
+D:\C#\Новая папка\NetProj\HW2\Project1\Project1\bin\Debug\Project1.exe.config
+D:\C#\Новая папка\NetProj\HW2\Project1\Project1\bin\Debug\Project1.exe
+D:\C#\Новая папка\NetProj\HW2\Project1\Project1\bin\Debug\Project1.pdb
+D:\C#\Новая папка\NetProj\HW2\Project1\Project1\obj\Debug\Project1.csproj.CoreCompileInputs.cache
+D:\C#\Новая папка\NetProj\HW2\Project1\Project1\obj\Debug\Project1.exe
+D:\C#\Новая папка\NetProj\HW2\Project1\Project1\obj\Debug\Project1.pdb
+D:\C#\Новая папка\NetProj\HW2\Project1\Project1\obj\Debug\Project1.csprojResolveAssemblyReference.cache
