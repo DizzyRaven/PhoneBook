@@ -47,6 +47,18 @@ namespace Project1
                 Console.WriteLine(item);
             }
         }
+        public void getMail(Collection<Contact> pb)
+        {
+            var sorted = from t in pb
+                         orderby t.Email
+                         select t.Email;
+            Console.WriteLine("========================");
+            foreach (var item in sorted)
+            {
+                if(item.Trim()!="")
+                Console.WriteLine(item);
+            }
+        }
         public Collection<Contact>  addNew(Collection<Contact> pb, string name, string surname, string phone, string email)
         {
             pb.Add(new Contact(name, surname, phone, email));

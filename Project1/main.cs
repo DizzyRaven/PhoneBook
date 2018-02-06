@@ -13,7 +13,6 @@ namespace Project1
     {
         static void Main()
         {
-            //=====
             program m = new program();
             /* Uncoment if .dat file is empty
             Collection<Contact> startPb = new Collection<Contact>();
@@ -35,13 +34,14 @@ namespace Project1
             while (s != "0")
             {
                 myPhoneBook = deserilizetion();
-                
+                Console.WriteLine("========================");
                 Console.WriteLine("Please, enter the numer of operation you would like to chose\n" +
                               "1. Search by Name\n" +
                               "2. Search by Surname\n" +
                               "3. Add new contact\n" +
                               "4. Remove contact\n" +
                               "5. Show reversed\n" +
+                              "6. Get all email-addresses\n"+
                               "0. EXIT\n");
                 s = Console.ReadLine();
                 switch (s)
@@ -83,6 +83,9 @@ namespace Project1
                         break;
                     case ("5"):
                         query.reversedSort(myPhoneBook);
+                        break;
+                    case ("6"):
+                        query.getMail(myPhoneBook);
                         break;
                     case ("0"):
                         Console.WriteLine("EXITING...");
