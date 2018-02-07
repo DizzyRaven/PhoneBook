@@ -14,9 +14,9 @@ namespace Project1
         public void nameSearch(Collection<Contact> pb, string starts)
         {
             var sorted = from t in pb
-                                where t.Name.StartsWith(starts) 
-                                orderby t.Name 
-                                select t;
+                         where t.Name.StartsWith(starts)
+                         orderby t.Name
+                         select t;
             Console.WriteLine("========================");
             foreach (var item in sorted)
             {
@@ -25,15 +25,17 @@ namespace Project1
         }
         public void surnameSearch(Collection<Contact> pb, string starts)
         {
-            var sorted = from t in pb 
-                         where t.Surname.StartsWith(starts) 
-                         orderby t.Surname 
-                         select t; 
+            var sorted = from t in pb
+                         where t.Surname.StartsWith(starts)
+                         orderby t.Surname
+                         select t;
             Console.WriteLine("========================");
             foreach (var item in sorted)
             {
                 Console.WriteLine(item);
             }
+            if (sorted.ToArray().Length == 1)
+                delOption(pb, sorted.First());
         }
         public void reversedSort(Collection<Contact> pb)
         {
@@ -41,28 +43,49 @@ namespace Project1
                          orderby t.Name
                          select t;
             Console.WriteLine("========================");
-            sorted.Reverse();
-            foreach (var item in sorted)
+            foreach (var item in sorted.Reverse())
             {
                 Console.WriteLine(item);
             }
+        }
+        public void delOption(Collection<Contact> pb, Contact contact)
+        {
+            Console.WriteLine("Put R to remove or 0 to Exit");
+            string s = Console.ReadLine();
+            if(s=="r" || s == "R")
+            {
+                Console.WriteLine("Contact "+contact.Name+" "+ contact.Surname+" have been removed!");
+                pb.Remove(contact);
+                serialisation(pb);
+            }
+                
         }
         public void getMail(Collection<Contact> pb)
         {
             var sorted = from t in pb
                          orderby t.Email
-                         select t.Email;
+                         select t;
             Console.WriteLine("========================");
             foreach (var item in sorted)
             {
-                if(item.Trim()!="")
-                Console.WriteLine(item);
+
+                if (item.Email.Trim() != "")
+                {
+                    Console.Write(item.Name + " " + item.Surname.First() +". - ");
+                    Console.WriteLine(item.Email);
+                }
             }
         }
-        public Collection<Contact>  addNew(Collection<Contact> pb, string name, string surname, string phone, string email)
+        public Collection<Contact> addNew(Collection<Contact> pb, string name, string surname, string phone, string email)
         {
-            pb.Add(new Contact(name, surname, phone, email));
-            serialisation(pb);
+            if (name.Trim() != "" && surname.Trim() != "")
+            {
+                pb.Add(new Contact(name, surname, phone, email));
+                serialisation(pb);
+                Console.WriteLine("Added!");
+            }
+            else
+                Console.WriteLine("Name and surname can't be empty!!!");
             return pb;
         }
         public Collection<Contact> remove(Collection<Contact> pb, string name, string surname, string phone, string email)
@@ -76,7 +99,7 @@ namespace Project1
 
         public void serialisation(Collection<Contact> pb)
         {
-            
+
 
             using (FileStream fs = new FileStream("phonebook.dat", FileMode.OpenOrCreate))
             {

@@ -39,7 +39,7 @@ namespace Project1
                               "1. Search by Name\n" +
                               "2. Search by Surname\n" +
                               "3. Add new contact\n" +
-                              "4. Remove contact\n" +
+                              "4. Sorry, not working\n" +
                               "5. Show reversed\n" +
                               "6. Get all email-addresses\n"+
                               "0. EXIT\n");
@@ -66,20 +66,9 @@ namespace Project1
                         Console.WriteLine("Email: ");
                         string email = Console.ReadLine();
                         query.addNew(myPhoneBook, name, surname, phone, email);
-                        Console.WriteLine("DONE!");
                         break;
                     case ("4"):
-                        Console.WriteLine("Name: ");
-                        name = Console.ReadLine();
-                        Console.WriteLine("Surname: ");
-                        surname = Console.ReadLine();
-                        Console.WriteLine("PhoneNumber: ");
-                        phone = Console.ReadLine();
-                        Console.WriteLine("Email: ");
-                        email = Console.ReadLine();
-                        query.remove(myPhoneBook, name, surname, phone, email);
-                        Console.WriteLine("DONE!");
-                        myPhoneBook = deserilizetion();
+                        //=====
                         break;
                     case ("5"):
                         query.reversedSort(myPhoneBook);
