@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Xml.Serialization;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-namespace Project1
+    namespace Project1
 {
 
     public class Queries
     {
+        serial sr = new serial();
         public void nameSearch(Collection<Contact> pb, string starts)
         {
             var sorted = from t in pb
@@ -56,7 +57,6 @@ namespace Project1
             {
                 Console.WriteLine("Contact "+contact.Name+" "+ contact.Surname+" have been removed!");
                 pb.Remove(contact);
-                serialisation(pb);
             }
                 
         }
@@ -81,7 +81,7 @@ namespace Project1
             if (name.Trim() != "" && surname.Trim() != "")
             {
                 pb.Add(new Contact(name, surname, phone, email));
-                serialisation(pb);
+                sr.serialisation(pb);
                 Console.WriteLine("Added!");
             }
             else
@@ -91,21 +91,8 @@ namespace Project1
         public Collection<Contact> remove(Collection<Contact> pb, string name, string surname, string phone, string email)
         {
             pb.Remove(new Contact(name, surname, phone, email));
-            serialisation(pb);
+            sr.serialisation(pb);
             return pb;
-        }
-
-        BinaryFormatter formatter = new BinaryFormatter();
-
-        public void serialisation(Collection<Contact> pb)
-        {
-
-
-            using (FileStream fs = new FileStream("phonebook.dat", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, pb);
-            }
-            pb.Distinct();
         }
     }
 }

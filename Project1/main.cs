@@ -6,25 +6,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace Project1
 {
     class program
     {
+        
+        public serial sr = new serial();
         static void Main()
         {
             program m = new program();
-            /* Uncoment if .dat file is empty
+            serial sr = new serial();
+            // Uncoment if .dat file is empty
             Collection<Contact> startPb = new Collection<Contact>();
             startPb.Add(new Contact("Ilya", "Bondar", "12312412532", "asdasd@gmail,com"));
-            m.serialisation(startPb);*/
+            sr.serialisation(startPb);
             m.consoleUI();
         }
         public void consoleUI()
         {
             program m = new program();
             Queries query = new Queries();
-            Collection<Contact> myPhoneBook = deserilizetion();
+            Collection<Contact> myPhoneBook = sr.deserilizetion();
 
 
             string s = "";
@@ -33,7 +37,7 @@ namespace Project1
 
             while (s != "0")
             {
-                myPhoneBook = deserilizetion();
+                myPhoneBook = sr.deserilizetion();
                 Console.WriteLine("========================");
                 Console.WriteLine("Please, enter the numer of operation you would like to chose\n" +
                               "1. Search by Name\n" +
@@ -86,33 +90,7 @@ namespace Project1
             }
 
         }
-        Collection<Contact> deserilizetion()
-        {
-            // десериализация
-            BinaryFormatter formatter = new BinaryFormatter();
-            Collection<Contact> pb = new Collection<Contact>();
-            using (FileStream fs = new FileStream("phonebook.dat", FileMode.OpenOrCreate))
-            {
-                Collection<Contact> deserilizePeople = (Collection<Contact>)formatter.Deserialize(fs);
-
-                foreach (Contact p in deserilizePeople)
-                {
-                    pb.Add(p);
-                }
-            }
-            return pb;
-        }
-        public void serialisation(Collection<Contact> pb)
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            using (FileStream fs = new FileStream("phonebook.dat", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, pb);
-            }
-            pb.Distinct();
-        }
-
+      
 
 
     }
